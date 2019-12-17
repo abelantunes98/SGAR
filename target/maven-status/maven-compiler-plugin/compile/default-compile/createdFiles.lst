@@ -1,0 +1,4 @@
+com/aan/sgar/rest/request/UsuarioRequest.class
+com/aan/sgar/persistence/model/Usuario.class
+com/aan/sgar/rest/controller/PublicoController.class
+com/aan/sgar/SgarApplication.class
