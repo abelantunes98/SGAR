@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class Gasto {
+public class Gasto implements Serializable {
     
     @id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

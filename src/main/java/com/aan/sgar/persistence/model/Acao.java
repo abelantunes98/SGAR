@@ -1,4 +1,3 @@
-
 package com.aan.sgar.persistence.model;
 
 import java.io.Serializable;
@@ -10,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.ArrayList;
 
-public class Acao{
+public class Acao implements Serializable {
     
     @id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,10 +101,6 @@ public class Acao{
 
     public void setValor(float valor) {
         this.valor = valor;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo =motivo;
     }
 
     public void setMotivo(String motivo) {
