@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SgarApplication<sgar>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.aan.sgar.SgarApplication",
+            "projectName": "sgar",
+            "args": ""
+        }
+    ]
+}

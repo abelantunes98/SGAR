@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class Gasto implements Serializable {
-    
-    @id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_GASTO")
     private long id;
@@ -73,7 +73,7 @@ public class Gasto implements Serializable {
     }
 
     public void setMotivo(String motivo) {
-        this.motivo =motivo;
+        this.motivo = motivo;
     }
 
     public void setDataAdquirido(String data) {

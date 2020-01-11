@@ -1,4 +1,11 @@
 /home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/rest/request/UsuarioRequest.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/model/Sede.java
 /home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/rest/controller/PublicoController.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/dao/UsuarioDAO.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/model/Pedido.java
 /home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/SgarApplication.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/service/GenericService.java
 /home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/model/Usuario.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/model/Gasto.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/model/Acao.java
+/home/abel/Documentos/SGAR/src/main/java/com/aan/sgar/persistence/service/UsuarioService.java

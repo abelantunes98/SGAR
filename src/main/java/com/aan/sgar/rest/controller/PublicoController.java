@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aan.sgar.persistence.model.Usuario;
 
 @RestController
-@RequestMapping("/publico")
-public class PublicoController {   
+@RequestMapping(value = "/publico")
+public class PublicoController {
 
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public List<Usuario> getUsuarios() {
-        
+
         List<Usuario> usuarios = new ArrayList<Usuario>();
         usuarios.add(new Usuario());
         return usuarios;

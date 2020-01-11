@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.ArrayList;
+import java.util.ArrayList;
 
 public class Acao implements Serializable {
-    
-    @id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ACAO")
     private long id;
@@ -37,7 +37,7 @@ public class Acao implements Serializable {
     private long idLocal;
 
     @Column(name = "ID_PEDIDO")
-    private String idPedido;
+    private long idPedido;
 
     @NotEmpty
     @NotNull
@@ -71,11 +71,11 @@ public class Acao implements Serializable {
         return this.motivo;
     }
 
-    public String getLocalId() {
+    public long getLocalId() {
         return this.idLocal;
     }
 
-    public String getPedidoId() {
+    public long getPedidoId() {
         return this.idPedido;
     }
 

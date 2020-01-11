@@ -8,22 +8,20 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
 public class Usuario implements Serializable {
 
     /*
-    * Classe que representa um usuario no sistema on-line.
-    */
+     * Classe que representa um usuario no sistema on-line.
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USUARIO")
-    private Long id;
-	
+    private long id;
 
     @NotNull
     @NotEmpty
-    @Column(name= "CPF_USUARIO", updatable = false,unique = true)
+    @Column(name = "CPF_USUARIO", updatable = false, unique = true)
     private String cpf;
 
     @NotNull
@@ -38,14 +36,13 @@ public class Usuario implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Column(name = "EMAIL",updatable = false,unique = true)
+    @Column(name = "EMAIL", updatable = false, unique = true)
     private String email;
 
     @NotNull
     @NotEmpty
     @Column(name = "SENHA")
     private String senha;
-
 
     public long getId() {
         return this.id;

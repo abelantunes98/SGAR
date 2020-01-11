@@ -16,14 +16,13 @@ import com.aan.sgar.persistence.model.Gasto;
 public class Sede implements Serializable {
 
     /*
-    * Classe que representa um usuario no sistema on-line.
-    */
+     * Classe que representa um usuario no sistema on-line.
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Sede")
-    private Long id;
-	
+    private long id;
 
     @NotNull
     @NotEmpty
@@ -58,14 +57,14 @@ public class Sede implements Serializable {
     private ArrayList<Number> idBens;
     private ArrayList<Gasto> gastos;
     private ArrayList<Acao> acoes;
-    private Map<String, String> cpfFuncaoRelacionados; 
+    private Map<String, String> cpfFuncaoRelacionados;
 
-    public boolean bemPertence(long id) {
-    //
-    }   
+    public void/* boolean */ bemPertence(long id) {
+        //
+    }
 
-    public boolean estaRelacionado(String cpf) {
-    //
+    public void/* boolean */ estaRelacionado(String cpf) {
+        //
     }
 
     public void addGasto(Gasto gasto) {
@@ -124,16 +123,16 @@ public class Sede implements Serializable {
         return this.acoes;
     }
 
-    public Acao getAcaoById(long id) {
-    //
+    public void/* Acao */ getAcaoById(long id) {
+        //
     }
 
-    public ArrayList<Acao> getAcoesByData( String Data) {
-    //
+    public void/* ArrayList<Acao> */ getAcoesByData(String Data) {
+        //
     }
 
-    public Map<String, String> getRelacionados() {
-    //
+    public void/* Map<String, String> */ getRelacionados() {
+        //
     }
 
     public void setNome(String nome) {

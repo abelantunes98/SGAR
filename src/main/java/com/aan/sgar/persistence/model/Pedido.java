@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.ArrayList;
+import java.util.ArrayList;
 
-public class Pedido implements Serializable{
-    
-    @id
+public class Pedido implements Serializable {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ACAO")
     private long id;
@@ -45,7 +45,7 @@ public class Pedido implements Serializable{
     @NotNull
     @Column(name = "CPF_RESPONSAVEL")
     private String cpfResponsavel;
-    
+
     @NotEmpty
     @NotNull
     @Column(name = "REALIZADO")
@@ -65,7 +65,7 @@ public class Pedido implements Serializable{
         return this.descricao;
     }
 
-    public float getCpfAssociado() {
+    public String getCpfAssociado() {
         return this.cpfAssociado;
     }
 
@@ -73,7 +73,7 @@ public class Pedido implements Serializable{
         return this.motivo;
     }
 
-    public String getLocalId() {
+    public long getLocalId() {
         return this.idLocal;
     }
 
@@ -111,10 +111,6 @@ public class Pedido implements Serializable{
 
     public void setLocalId(long id) {
         this.idLocal = id;
-    }
-
-    public void setPedidoId(long id) {
-        this.idPedido = id;
     }
 
     public void setData(String data) {
