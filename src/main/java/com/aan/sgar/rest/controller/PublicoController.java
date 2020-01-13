@@ -39,5 +39,5 @@ public class PublicoController {
         usuarioService.save(novoUsuario);
     }
 
-    return ResponseEntity<Cliente>(novoUsuario, HttpStatus.OK);
+    return new ResponseEntity<Cliente>(novoUsuario, HttpStatus.OK);
 }
