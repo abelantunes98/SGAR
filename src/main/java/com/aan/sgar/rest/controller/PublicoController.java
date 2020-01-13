@@ -32,7 +32,7 @@ public class PublicoController {
         
         Usuario usuarioCadastrado = usuarioService.findByCpf(clientRequest.cpf);
         if (usuarioCadastrado != null) {
-            throws new CpfJaCadastradoException;
+            throws new CpfJaCadastradoException();
         }
 
         novoUsuario = new Usuario(clientRequest);
