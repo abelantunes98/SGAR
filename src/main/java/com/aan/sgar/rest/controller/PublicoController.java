@@ -38,4 +38,6 @@ public class PublicoController {
         novoUsuario = new Usuario(clientRequest);
         usuarioService.save(novoUsuario);
     }
+
+    return ResponseEntity<Cliente>(novoUsuario, HttpStatus.OK);
 }
