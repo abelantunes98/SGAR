@@ -14,6 +14,14 @@ public class Usuario implements Serializable {
      * Classe que representa um usuario no sistema on-line.
      */
 
+    public Usuario(UsuarioRequest request){
+        setEmail(request.getEmail());
+        setFuncao(request.getFuncao());
+        setNome(request.getNome());
+        setSenha(request.getSenha());
+        setCpf(request.getCpf());
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USUARIO")
@@ -82,6 +90,10 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
 }

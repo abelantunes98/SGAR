@@ -12,7 +12,7 @@ private String nome;
 private String funcao;
 private String senha;
 
-public String getId() {
+public String getCpf() {
     return this.cpf;
 }
 
@@ -38,6 +38,10 @@ public void setFuncao(String funcao) {
 
 public void setSenha(String senha) {
     this.senha = senha;
+}
+
+public void setCpf(String cpf){
+    this.cpf = cpf;
 }
 
 
