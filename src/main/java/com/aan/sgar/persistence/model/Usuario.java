@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.aan.sgar.rest.request.UsuarioRequest;
+
 public class Usuario implements Serializable {
 
     /*

@@ -1,4 +1,4 @@
-package com.aan.sgar.rest.exception.usuario;
+package com.aan.sgar.rest.exceptions;
 
 public class GenericException extends RuntimeException {
 

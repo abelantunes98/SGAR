@@ -11,6 +11,7 @@ private String cpf;
 private String nome;
 private String funcao;
 private String senha;
+private String email;
 
 public String getCpf() {
     return this.cpf;
@@ -18,6 +19,10 @@ public String getCpf() {
 
 public String getNome() {
     return this.nome;
+}
+
+public String getEmail(){
+    return this.email;
 }
 
 public String getFuncao() {
@@ -42,6 +47,10 @@ public void setSenha(String senha) {
 
 public void setCpf(String cpf){
     this.cpf = cpf;
+}
+
+public void setEmail(String email){
+    this.email = email;
 }
 
 

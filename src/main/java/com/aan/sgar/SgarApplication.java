@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 * sejam localizados a partir de um scan. Isso foi necessário para o Controller funcionar.
 */
 @ComponentScan({ "com.aan.sgar.rest.controller" })
+@ComponentScan({ "com.aan.sgar.persistence.service" })
 @EntityScan("com.delivery.domain")
 @EnableJpaRepositories("com.delivery.repository")
 @SpringBootApplication

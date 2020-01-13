@@ -1,8 +1,8 @@
-package com.aan.sgar.rest.exception.usuario;
+package com.aan.sgar.rest.exceptions;
 
-public class EmailJaCadastradoException extends GenericException{
+public class CpfJaCadastradoException extends GenericException{
 
-	public EmailJaCadastradoException() {
+	public CpfJaCadastradoException() {
 		super("O cpf já esta em uso.");
 	}
 
