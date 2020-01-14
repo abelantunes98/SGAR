@@ -2,10 +2,12 @@ C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\p
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\service\UsuarioService.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\model\Pedido.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\rest\controller\PublicoController.java
-C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\model\Acao.java
-C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\service\GenericService.java
+C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\rest\exceptions\CpfJaCadastradoException.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\rest\request\UsuarioRequest.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\SgarApplication.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\dao\UsuarioDAO.java
+C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\rest\exceptions\GenericException.java
+C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\model\Acao.java
+C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\service\GenericService.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\model\Usuario.java
 C:\Users\abel.antunes.de.neto\Documents\GitHub\SGAR\src\main\java\com\aan\sgar\persistence\model\Gasto.java

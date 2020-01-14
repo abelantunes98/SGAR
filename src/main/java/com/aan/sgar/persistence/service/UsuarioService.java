@@ -4,9 +4,10 @@ import com.aan.sgar.persistence.dao.UsuarioDAO;
 import com.aan.sgar.persistence.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
-public class UsuarioService extends GenericService<Usuario> {
+public class UsuarioService {
 
     @Autowired
     private UsuarioDAO dao;
@@ -18,4 +19,16 @@ public class UsuarioService extends GenericService<Usuario> {
     public Usuario findByCpf(String cpf) {
         return dao.findByCpf(cpf);
     }
+
+    public void deleteByCpf(String cpf) {
+        dao.deleteByCpf(cpf);
+    }
+
+    public void save(Usuario usr) {
+        dao.save(usr);
+    }
+
+    public List<Usuario> list() {
+		return this.dao.findAll();
+	}
 }

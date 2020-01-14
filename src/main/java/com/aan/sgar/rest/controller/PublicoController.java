@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
+import org.springframework.http.HttpStatus;
 import com.aan.sgar.persistence.model.Usuario;
 import com.aan.sgar.persistence.service.UsuarioService;
 import com.aan.sgar.rest.exceptions.CpfJaCadastradoException;
@@ -24,15 +23,14 @@ public class PublicoController {
     private UsuarioService usuarioService;
 
     @GetMapping(value = "/usuarios")
-    public List<Usuario> getUsuarios() {
-
-        List<Usuario> usuarios = new ArrayList<Usuario>();
-        return usuarios;
+    public ResponseEntity<List<Usuario>> getUsuarios() {
+        
+        return new ResponseEntity<List<Usuario>> (usuarioService.list(), HttpStatus.OK);
     }
 
     
     @PostMapping(value = "/usuario")
-    public void/*ResponseEntity<Usuario>*/ addUsuario(@RequestBody UsuarioRequest clientRequest) {
+    public ResponseEntity<Usuario> addUsuario(@RequestBody UsuarioRequest clientRequest) {
         
         Usuario usuarioCadastrado = usuarioService.findByCpf(clientRequest.getCpf());
         if (usuarioCadastrado != null) {
@@ -40,8 +38,7 @@ public class PublicoController {
         }
 
         Usuario novoUsuario = new Usuario(clientRequest);
-        usuarioService.salvar(novoUsuario);
+        usuarioService.save(novoUsuario);
+        return new ResponseEntity<Usuario>(novoUsuario, HttpStatus.OK);
     }
-
-    //return new //ResponseEntity<Usuario>(novoUsuario, HttpStatus.OK);
 }
