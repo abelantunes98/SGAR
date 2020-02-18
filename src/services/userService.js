@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth.js');
 
  criarUsuario = async function (userReq) {
 
@@ -30,9 +31,9 @@ login = async function (email, senha) {
 
     user.password = undefined;
     // Gerando Token de login.
-    const token = jwt.sign({ id: user.id}, 'cristianeluanarebeca', {
+    const token = jwt.sign({ id: user.id }, authConfig.secret, {
         expiresIn: 86400,
-    })
+    });
     return {user, token};
 }
 
