@@ -1,0 +1,1 @@
+const Pagamento = require('../models/Pagamento');
