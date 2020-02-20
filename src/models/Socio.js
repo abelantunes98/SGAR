@@ -12,6 +12,7 @@ const SocioSchema = new mongoose.Schema({
     cpf: {
         type: String,
         require: true,
+        null: false,
         unique: true,
     },
     rg: {
