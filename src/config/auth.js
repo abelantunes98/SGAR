@@ -1,5 +1,6 @@
 const config = {
-    secret: 'cristianeluanarebeca'
+    secret: 'cristianeluanarebeca',
+    codRoot: 'criarroot'
 }
 
 module.exports = config;

@@ -3,7 +3,31 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.js');
 
- criarUsuario = async function (userReq) {
+// Criando o primeiro usuário do sistema, é necessário
+// um código especial. Só serve para o primeiro usuário.
+criarUsuarioRoot = async function (userReq) {
+
+    try {
+        const { codigo } = userReq;
+        const codRoot = authConfig.codRoot;
+        if (!(codRoot == codigo)) {
+            throw 'O código para criação do root está errado.';
+        }
+        if ((await contaUsuarios()) > 0) {
+            throw 'O código root só serve para criação do primeiro usuário.';
+        }
+        const user = await User.create(userReq);
+        // Removendo senha do response.
+        user.password = undefined;
+        return user;
+    
+    } catch (err) {
+        return err;
+    }
+}
+
+// Criando um usuário no sistema.
+criarUsuario = async function (userReq) {
 
     try {
 
@@ -112,4 +136,9 @@ comparaIdTokenEmail = async function(token, email) {
     return true;
 }
 
-module.exports = { criarUsuario, verificaExistenciaUser, login, retornaIdPorToken, atualizaUsuario, atualizaEmailUser};
+contaUsuarios = async function() {
+    const countUsers = await User.estimatedDocumentCount();
+    return countUsers;
+}
+
+module.exports = {criarUsuarioRoot, criarUsuario, verificaExistenciaUser, login, atualizaUsuario, atualizaEmailUser};

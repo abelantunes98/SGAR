@@ -4,7 +4,19 @@ const authMiddle = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/register', async(req, res) => {
+// Registrar o primeiro Adm
+router.post('/registerroot', async(req, res) => {
+    try {
+        const user = await userService.criarUsuarioRoot(req.body);
+        // Removendo senha do response.
+        return res.send({ user });
+    } catch (err) {
+        return res.status(400).send({ error: err});
+    }
+})
+
+// Registrando um novo adm.
+router.post('/register', authMiddle, async(req, res) => {
     
     try {
         const { email } = req.body;
@@ -61,6 +73,7 @@ router.post('/updateemail', authMiddle, async (req, res) => {
         return res.status(400).send({ err });
     }
 });
+
 
 //https://www.youtube.com/watch?v=KKTX1l3sZGk
 module.exports = app => app.use('/auth', router);
