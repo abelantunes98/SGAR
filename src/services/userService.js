@@ -46,9 +46,7 @@ atualizaUsuario = async function (dados, token) {
             throw 'Usuário não localizado no sistema.';
         }
         
-        const userId = await retornaIdUser(email);
-        const reqId = await retornaIdPorToken(token);
-        if (!(userId == reqId)) {
+        if (!(await comparaIdTokenEmail(token, email))) {
             throw 'Um usuário só pode alterar seus própios dados.';
         }
         const att = await User.findOneAndUpdate({ email }, {$set:dados}, {new: true});
@@ -57,6 +55,27 @@ atualizaUsuario = async function (dados, token) {
         return err;
     }
 
+}
+
+// Atualizando o E-mail de um usuário.
+// Apenas quando o mesmo está logado.
+atualizaEmailUser = async function (dados, token) {
+    
+    const {email, novoEmail} = dados;
+    try {
+        if (! await verificaExistenciaUser(email)) {
+            throw 'Usuário não localizado no sistema!';
+        }
+
+        if (!(await comparaIdTokenEmail(token, email))){
+            throw 'Um usuário só pode alterar seu próprio E-mail.';
+        }
+        const idUser = await retornaIdUser(email);
+        const att = await User.findOneAndUpdate({ _id: idUser }, {$set:{email:novoEmail}}, {new: true});
+        return att;
+    } catch (err) {
+        return err;
+    }
 }
 
 verificaExistenciaUser = async function (email) {
@@ -72,6 +91,7 @@ retornaIdUser = async function (email) {
     }
 }
 
+// Capturando id de um usuário no BD por seu token de acesso.
 retornaIdPorToken = async function (token) {
     const idUser = await jwt.verify(token, authConfig.secret, (err, decoded) => {
         if (err) {
@@ -82,4 +102,14 @@ retornaIdPorToken = async function (token) {
     return idUser;
 }
 
-module.exports = { criarUsuario, verificaExistenciaUser, login, retornaIdPorToken, atualizaUsuario};
+// Comparando se o usuário logado é o mesmo do E-mail passado
+comparaIdTokenEmail = async function(token, email) {
+    const userId = await retornaIdUser(email);
+    const reqId = await retornaIdPorToken(token);
+    if (!(userId == reqId)) {
+        return false;
+    }
+    return true;
+}
+
+module.exports = { criarUsuario, verificaExistenciaUser, login, retornaIdPorToken, atualizaUsuario, atualizaEmailUser};

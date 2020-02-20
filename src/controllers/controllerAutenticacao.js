@@ -45,7 +45,22 @@ router.post('/update', authMiddle, async (req, res) => {
     } catch (err) {
         return res.status(400).send({ err });
     }
-})
+});
+
+router.post('/updateemail', authMiddle, async (req, res) => {
+    
+    try {
+        const dados = req.body;
+        const authHeader = req.headers.authorization;
+        const parts = authHeader.split(' ');
+        const [ scheme, token ] = parts;
+
+        resp = await userService.atualizaEmailUser(dados, token);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
 
 //https://www.youtube.com/watch?v=KKTX1l3sZGk
 module.exports = app => app.use('/auth', router);
