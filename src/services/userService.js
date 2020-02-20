@@ -102,6 +102,30 @@ atualizaEmailUser = async function (dados, token) {
     }
 }
 
+// Deletando usuário logado ou um outro usuário,
+// Caso o código de acesso root esteja presente
+apagarUsuario = async function (reqBody, token) {
+    
+    try {
+        const { email, codigo } = reqBody;
+        if (! (await verificaExistenciaUser(email))){
+            throw 'Usuário não encontrado no sistema.';
+        }
+        if (await comparaIdTokenEmail(token, email)) {
+            await User.findOneAndDelete({ email });
+            return 'Usuário apagado!';
+        } else if (codigo == authConfig.codRoot) {
+            await User.findOneAndDelete({ email });
+            return 'Usuário apagado!';
+        } else {
+            throw 'Só é possível apagar um usuário diferente com o código root.';
+        }
+    } catch (err) {
+        return err;
+    }
+
+}
+
 verificaExistenciaUser = async function (email) {
     const user = await User.findOne({ email });
     return (user != null);
@@ -141,4 +165,4 @@ contaUsuarios = async function() {
     return countUsers;
 }
 
-module.exports = {criarUsuarioRoot, criarUsuario, verificaExistenciaUser, login, atualizaUsuario, atualizaEmailUser};
+module.exports = {criarUsuarioRoot, criarUsuario, verificaExistenciaUser, login, atualizaUsuario, atualizaEmailUser, apagarUsuario};

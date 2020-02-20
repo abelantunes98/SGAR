@@ -33,6 +33,7 @@ router.post('/register', authMiddle, async(req, res) => {
     }
 });
 
+// Rota de login.
 router.post('/login', async (req, res) => {
     const {email, password} = req.body;
     
@@ -44,6 +45,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Rota para alteração de dados de um usuário.
 router.post('/update', authMiddle, async (req, res) => {
     
     try {
@@ -59,6 +61,7 @@ router.post('/update', authMiddle, async (req, res) => {
     }
 });
 
+// Rota para alteração do E-mail de um usuário.
 router.post('/updateemail', authMiddle, async (req, res) => {
     
     try {
@@ -74,6 +77,21 @@ router.post('/updateemail', authMiddle, async (req, res) => {
     }
 });
 
+router.delete('/', authMiddle, async (req, res) => {
+    
+    try {
+        const dados = req.body;
+        const authHeader = req.headers.authorization;
+        const parts = authHeader.split(' ');
+        const [ scheme, token ] = parts;
+
+        const resp = await userService.apagarUsuario(dados, token);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 
 //https://www.youtube.com/watch?v=KKTX1l3sZGk
-module.exports = app => app.use('/auth', router);
+module.exports = app => app.use('/user', router);
