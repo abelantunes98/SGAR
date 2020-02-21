@@ -23,6 +23,17 @@ router.post('/criar', async (req, res) => {
     }
 });
 
+// Criando associados a partir de uma lista.
+router.post('/criarlista', authMiddle, async (req, res) => {
+    try {    
+        const lista = req.body;
+        const resp = await socioService.criarSociosPorLista(lista);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 // Apagando um associado.
 router.delete('/', async (req, res) => {
     try {

@@ -6,7 +6,7 @@ const PagamentoSchema = new mongoose.Schema({
         require: true,
     },
     dataReferente: {
-        type: Date.UTC,
+        type: Date,
         required: true,
     },
     emailAdm :{

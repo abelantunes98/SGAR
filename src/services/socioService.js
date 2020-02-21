@@ -11,6 +11,25 @@ criarSocio = async function (userReq) {
     }
 }
 
+// Adicionando multiplos sócios no sistema a partir de um array de 
+// Jsons.
+criarSociosPorLista = async function(lista) {
+    try {
+        const saida = [];
+        for (indice in lista) {
+            if (await verificaExistenciaSocio(lista[indice].cpf)) {
+                saida[indice] = lista[indice].cpf + ': Sócio já cadastrado.';
+            } else {
+                const socioAdd = await Socio.create(lista[indice]);
+                saida[indice] = socioAdd;
+            }
+        }
+        return saida;
+    } catch (err) {
+        return err;
+    }
+}
+
 // Apagando um associado a partir de seu cpf.
 apagarSocio = async function (cpf) {
 
@@ -71,4 +90,4 @@ retornaIdSocio = async function (cpf) {
     }
 }
 
-module.exports = { criarSocio, verificaExistenciaSocio, apagarSocio, atualizaSocio, atualizaCpfSocio };
+module.exports = { criarSocio, criarSociosPorLista, verificaExistenciaSocio, apagarSocio, atualizaSocio, atualizaCpfSocio };

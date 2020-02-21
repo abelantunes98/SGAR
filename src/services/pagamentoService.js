@@ -16,10 +16,29 @@ adicionarPagamento = async function(reqBody) {
     }
 }
 
+// Adicionando multiplos sócios no sistema a partir de um array de 
+// Jsons.
+adicionarPagamentosPorLista = async function(lista) {
+    try {
+        const saida = [];
+        for (indice in lista) {
+            if (await verificaExistenciaPagamento(lista[indice].cpfSocio, lista[indice].dataReferente)) {
+                saida[indice] = lista[indice].cpfSocio + ' | ' + lista[indice].dataReferente + ': Pagamento já cadastrado.';
+            } else {
+                const pagAdd = await Pagamento.create(lista[indice]);
+                saida[indice] = pagAdd;
+            }
+        }
+        return saida;
+    } catch (err) {
+        return err;
+    }
+}
+
 // Verifica se já existe o pagamento do sócio no mês referido.
 verificaExistenciaPagamento = async function(cpfSocio, dataReferente) {
     const pag = await Pagamento.findOne({ cpfSocio, dataReferente });
     return (pag != null);
 }
 
-module.exports = { adicionarPagamento };
+module.exports = { adicionarPagamento, adicionarPagamentosPorLista };
