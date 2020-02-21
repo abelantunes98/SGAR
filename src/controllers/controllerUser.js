@@ -77,6 +77,7 @@ router.post('/updateemail', authMiddle, async (req, res) => {
     }
 });
 
+// Rota para deletar um usuário.
 router.delete('/', authMiddle, async (req, res) => {
     
     try {
@@ -92,6 +93,4 @@ router.delete('/', authMiddle, async (req, res) => {
     }
 });
 
-
-//https://www.youtube.com/watch?v=KKTX1l3sZGk
 module.exports = app => app.use('/user', router);
