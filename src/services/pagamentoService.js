@@ -35,10 +35,29 @@ adicionarPagamentosPorLista = async function(lista) {
     }
 }
 
+// Apagando pagamento do sistema.
+apagaPagamentoPorId = async function(id) {
+    try {
+        //if (!(await verificaExistenciaPagamentoPorId(_id))) {
+          //  throw 'Esse pagamento não está cadastrado no sistema.';
+        //}
+        await Pagamento.findOneAndDelete({ id });
+        return 'Pagamento apagado!';
+    } catch (err) {
+        return err;
+    }
+}
+
 // Verifica se já existe o pagamento do sócio no mês referido.
 verificaExistenciaPagamento = async function(cpfSocio, dataReferente) {
     const pag = await Pagamento.findOne({ cpfSocio, dataReferente });
     return (pag != null);
 }
 
-module.exports = { adicionarPagamento, adicionarPagamentosPorLista };
+// Verifica se já existe o pagamento por seu id.
+verificaExistenciaPagamentoPorId = async function(_id) {
+    const pag = await Pagamento.findOne({ _id });
+    return (pag != null);
+}
+
+module.exports = { adicionarPagamento, adicionarPagamentosPorLista, apagaPagamentoPorId };

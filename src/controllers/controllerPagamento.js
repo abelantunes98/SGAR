@@ -7,7 +7,7 @@ const router = express.Router();
 // Protegendo a rota.
 router.use(authMiddle);
 
-router.post('/adicionarpagamento', authMiddle,async (req, res) => {
+router.post('/adicionarpagamento', async (req, res) => {
 
     try {
         const resp = await pagamentoService.adicionarPagamento(req.body);
@@ -23,6 +23,17 @@ router.post('/adicionarpagamentoslista', async (req, res) => {
         const resp = await pagamentoService.adicionarPagamentosPorLista(lista);
         return res.send({ resp });
 
+});
+
+// Apagando um pagamento por seu id.
+router.delete('/apagarporid', async (req, res) => {
+    try {
+        const { id } = req;
+        const resp = await pagamentoService.apagaPagamentoPorId(id);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
 });
 
 
