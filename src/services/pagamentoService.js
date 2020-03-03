@@ -35,6 +35,26 @@ adicionarPagamentosPorLista = async function(lista) {
     }
 }
 
+// Listando todos os pagamentos.
+listarTodosPagamentos = async function() {
+    try {
+        const pagamentos = await Pagamento.find();
+        return pagamentos;
+    } catch (err) {
+        return err;
+    }    
+}
+
+// Listando todos os pagamentos de um sócio, por seu cpf.
+listarPagamentosCpf = async function(cpf) {
+    try {
+        const pagamentos = await Pagamento.find({cpfSocio: cpf});
+        return pagamentos;
+    } catch (err) {
+        return err;
+    }    
+}
+
 // Apagando pagamento do sistema.
 apagaPagamentoPorId = async function(id) {
     try {
@@ -60,4 +80,4 @@ verificaExistenciaPagamentoPorId = async function(_id) {
     return (pag != null);
 }
 
-module.exports = { adicionarPagamento, adicionarPagamentosPorLista, apagaPagamentoPorId };
+module.exports = { adicionarPagamento, listarTodosPagamentos, listarPagamentosCpf, adicionarPagamentosPorLista, apagaPagamentoPorId };

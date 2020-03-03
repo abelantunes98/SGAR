@@ -17,6 +17,27 @@ router.post('/adicionarpagamento', async (req, res) => {
     }
 });
 
+// Retornando todos os pagamentos cadastrados.
+router.get('/listar', async (req, res) => {
+    try {
+        const resp = await pagamentoService.listarTodosPagamentos();
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
+// Listando pagamentos de um sócio, por seu cpf.
+router.get('/listarporcpf', async (req, res) => {
+    try {
+        const { cpf } = req.body;
+        const resp = await pagamentoService.listarPagamentosCpf(cpf);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 // Criando pagamentos a partir de uma lista.
 router.post('/adicionarpagamentoslista', async (req, res) => {
         const lista = req.body;
