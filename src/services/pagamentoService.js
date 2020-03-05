@@ -58,11 +58,8 @@ listarPagamentosCpf = async function(cpf) {
 // Apagando pagamento do sistema.
 apagaPagamentoPorId = async function(id) {
     try {
-        //if (!(await verificaExistenciaPagamentoPorId(_id))) {
-          //  throw 'Esse pagamento não está cadastrado no sistema.';
-        //}
-        await Pagamento.findOneAndDelete({ id });
-        return 'Pagamento apagado!';
+        const resp = await Pagamento.findOneAndDelete({ _id:id });
+        return resp;
     } catch (err) {
         return err;
     }

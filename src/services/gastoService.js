@@ -48,10 +48,12 @@ listarGastosCpf = async function(cpf) {
 
 // Apagando gasto do sistema.
 apagaGastoPorId = async function(id) {
-    
-        const resp = await Gasto.findOne({responsavelCpf:id});
+    try {
+        const resp = await Gasto.findOneAndDelete({_id:id});
         return resp;
-   
+    } catch (err) {
+        return err;
+    }
 }
 
 // Verifica se já existe o pagamento por seu id.

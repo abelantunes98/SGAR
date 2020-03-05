@@ -49,7 +49,7 @@ router.post('/adicionarpagamentoslista', async (req, res) => {
 // Apagando um pagamento por seu id.
 router.delete('/apagarporid', async (req, res) => {
     try {
-        const { id } = req;
+        const { id } = req.body;
         const resp = await pagamentoService.apagaPagamentoPorId(id);
         return res.send({ resp });
     } catch (err) {
