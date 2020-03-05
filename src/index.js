@@ -9,4 +9,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./controllers/controllerUser')(app);
 require('./controllers/controllerAssociado')(app);
 require('./controllers/controllerPagamento')(app);
+require('./controllers/controllerGasto')(app);
 app.listen(3000);

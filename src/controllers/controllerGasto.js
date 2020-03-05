@@ -48,13 +48,10 @@ router.post('/adicionargastoslista', async (req, res) => {
 
 // Apagando um gasto por seu id.
 router.delete('/apagarporid', async (req, res) => {
-    try {
+
         const { id } = req;
         const resp = await gastoService.apagaGastoPorId(id);
         return res.send({ resp });
-    } catch (err) {
-        return res.status(400).send({ err });
-    }
 });
 
 

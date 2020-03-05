@@ -1,4 +1,4 @@
-const Pagamento = require('../models/Pagamento');
+const Gasto = require('../models/Gasto');
 
 // Adicionando um gasto da associação.
 adicionarGasto = async function(reqBody) {
@@ -36,14 +36,22 @@ listarTodosGastos = async function() {
     }    
 }
 
-// Apagando gasto do sistema.
-apagaGastoPorId = async function(id) {
+// Listando todos os gastos de um responsável, por seu cpf.
+listarGastosCpf = async function(cpf) {
     try {
-        await Gasto.findOneAndDelete({ id });
-        return 'Gasto apagado!';
+        const gastos = await Gasto.find({responsavelCpf: cpf});
+        return gastos;
     } catch (err) {
         return err;
-    }
+    }    
+}
+
+// Apagando gasto do sistema.
+apagaGastoPorId = async function(id) {
+    
+        const resp = await Gasto.findOne({responsavelCpf:id});
+        return resp;
+   
 }
 
 // Verifica se já existe o pagamento por seu id.
@@ -52,4 +60,4 @@ verificaExistenciaGastoPorId = async function(_id) {
     return (gasto != null);
 }
 
-module.exports = { adicionarGasto, listarTodosGastos, adicionarGastosPorLista, apagaGastoPorId };
+module.exports = { adicionarGasto, listarTodosGastos, listarGastosCpf, adicionarGastosPorLista, apagaGastoPorId };
