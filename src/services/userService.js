@@ -102,6 +102,16 @@ atualizaEmailUser = async function (dados, token) {
     }
 }
 
+// Listando usuários, em ordem alfabética.
+listarUsuarios = async function () {
+    try {
+        const users = await User.find().sort({ nome : 1 });
+        return users;
+    } catch (err) {
+        return err;
+    }
+}
+
 // Deletando usuário logado ou um outro usuário,
 // Caso o código de acesso root esteja presente
 apagarUsuario = async function (reqBody, token) {
@@ -165,4 +175,4 @@ contaUsuarios = async function() {
     return countUsers;
 }
 
-module.exports = {criarUsuarioRoot, criarUsuario, verificaExistenciaUser, login, atualizaUsuario, atualizaEmailUser, apagarUsuario};
+module.exports = {criarUsuarioRoot, criarUsuario, verificaExistenciaUser, login, atualizaUsuario, atualizaEmailUser, listarUsuarios, apagarUsuario};

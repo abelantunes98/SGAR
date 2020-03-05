@@ -77,6 +77,16 @@ router.post('/updateemail', authMiddle, async (req, res) => {
     }
 });
 
+// Listando usuarios cadastrados em ordem alfabética.
+router.get('/listar', authMiddle, async (req, res) => {
+    try {
+        const users = await userService.listarUsuarios();
+        return res.send({ users });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 // Rota para deletar um usuário.
 router.delete('/', authMiddle, async (req, res) => {
     

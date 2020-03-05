@@ -34,6 +34,16 @@ router.post('/criarlista', authMiddle, async (req, res) => {
     }
 });
 
+// Listando socios cadastrados em ordem alfabética.
+router.get('/listar', async (req, res) => {
+    try {
+        const socios = await socioService.listarSocios();
+        return res.send({ socios });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 // Apagando um associado.
 router.delete('/', async (req, res) => {
     try {

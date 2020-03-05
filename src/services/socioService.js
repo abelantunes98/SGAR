@@ -30,6 +30,16 @@ criarSociosPorLista = async function(lista) {
     }
 }
 
+// Listando sócios, em ordem alfabética.
+listarSocios = async function () {
+    try {
+        const socios = await Socio.find().sort({ nome : 1 });
+        return socios;
+    } catch (err) {
+        return err;
+    }
+}
+
 // Apagando um associado a partir de seu cpf.
 apagarSocio = async function (cpf) {
 
@@ -90,4 +100,4 @@ retornaIdSocio = async function (cpf) {
     }
 }
 
-module.exports = { criarSocio, criarSociosPorLista, verificaExistenciaSocio, apagarSocio, atualizaSocio, atualizaCpfSocio };
+module.exports = { criarSocio, criarSociosPorLista, verificaExistenciaSocio, listarSocios, apagarSocio, atualizaSocio, atualizaCpfSocio };
