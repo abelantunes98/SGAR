@@ -55,6 +55,20 @@ listarPagamentosCpf = async function(cpf) {
     }    
 }
 
+// Listando pagamentos de um determinado intervalo de tempo.
+// Referente a data do pagamento.
+listarPagamentosIntervalo = async function(datInicial, datFinal) {
+    const pagamentos = await Pagamento.find({ dataReferente: {$gte: datInicial, $lte: datFinal}});
+    return pagamentos;
+}
+
+// Listando gastos de um determinado intervalo de tempo.
+// Referente a data de inserção.
+listarPagamentosIntervaloInsercao = async function(datInicial, datFinal) {
+    const pagamentos = await Pagamento.find({ createdAt: {$gt: datInicial, $lt: datFinal}});
+    return pagamentos;
+}
+
 // Apagando pagamento do sistema.
 apagaPagamentoPorId = async function(id) {
     try {
@@ -77,4 +91,4 @@ verificaExistenciaPagamentoPorId = async function(_id) {
     return (pag != null);
 }
 
-module.exports = { adicionarPagamento, listarTodosPagamentos, listarPagamentosCpf, adicionarPagamentosPorLista, apagaPagamentoPorId };
+module.exports = { adicionarPagamento, listarTodosPagamentos, listarPagamentosCpf, listarPagamentosIntervalo, listarPagamentosIntervaloInsercao, adicionarPagamentosPorLista, apagaPagamentoPorId };

@@ -38,6 +38,30 @@ router.get('/listarporcpf', async (req, res) => {
     }
 });
 
+// Listando pagamentos a partir de um intervalo de datas.
+// Intervalo referente ao pagamento.
+router.get('/listarpordatapagamento', async (req, res) => {
+    try {
+        const {datInicial, datFinal} = req.body;
+        const resp = await pagamentoService.listarPagamentosIntervalo(datInicial, datFinal);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
+// Listando pagamentos a partir de um intervalo de datas.
+// Intervalo referente a inserção do gasto.
+router.get('/listarpordatainsercao', async (req, res) => {
+    try {
+        const {datInicial, datFinal} = req.body;
+        const resp = await pagamentoService.listarPagamentosIntervaloInsercao(datInicial, datFinal);
+        return res.send({ resp });
+    } catch (err) {
+        return res.status(400).send({ err });
+    }
+});
+
 // Criando pagamentos a partir de uma lista.
 router.post('/adicionarpagamentoslista', async (req, res) => {
         const lista = req.body;

@@ -46,6 +46,20 @@ listarGastosCpf = async function(cpf) {
     }    
 }
 
+// Listando gastos de um determinado intervalo de tempo.
+// Referente a data do gasto.
+listarGastosIntervalo = async function(datInicial, datFinal) {
+    const gastos = await Gasto.find({ dataGasto: {$gt: datInicial, $lt: datFinal}});
+    return gastos;
+}
+
+// Listando gastos de um determinado intervalo de tempo.
+// Referente a data de inserção.
+listarGastosIntervaloInsercao = async function(datInicial, datFinal) {
+    const gastos = await Gasto.find({ createdAt: {$gte: datInicial, $lte: datFinal}});
+    return gastos;
+}
+
 // Apagando gasto do sistema.
 apagaGastoPorId = async function(id) {
     try {
@@ -62,4 +76,4 @@ verificaExistenciaGastoPorId = async function(_id) {
     return (gasto != null);
 }
 
-module.exports = { adicionarGasto, listarTodosGastos, listarGastosCpf, adicionarGastosPorLista, apagaGastoPorId };
+module.exports = { adicionarGasto, listarTodosGastos, listarGastosCpf, listarGastosIntervalo, listarGastosIntervaloInsercao, adicionarGastosPorLista, apagaGastoPorId };
