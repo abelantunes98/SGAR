@@ -5,18 +5,22 @@ const GastoSchema = new mongoose.Schema({
         type: Number,
         require: true,
     },
-    finalidade:{
+    finalidade: {
         type: String,
         require: true,
     },
-    responsavelCpf:{
+    responsavelCpf: {
         type: String,
         require: true,
     },
-    emailAdm :{
+    emailAdm: {
         type: String,
         require: true,
         lowercase: true,
+    },
+    dataGasto: {
+        type: Date,
+        require: true,
     },
     createdAt: {
         type: Date,

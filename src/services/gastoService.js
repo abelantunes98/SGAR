@@ -4,29 +4,21 @@ const Pagamento = require('../models/Pagamento');
 adicionarGasto = async function(reqBody) {
     
     try {
-        const { cpfResponsavel, dataReferente } = reqBody;
-        if (await verificaExistenciaPagamento(cpfSocio, dataReferente)) {
-            throw 'Esse pagamento já foi cadastrado no sistema!';
-        }
-        const pag = await Pagamento.create(reqBody);
-        return pag;
+        const gasto = await Gasto.create(reqBody);
+        return gasto;
     } catch (err) {
         return err;
     }
 }
 
-// Adicionando multiplos sócios no sistema a partir de um array de 
+// Adicionando multiplos gastos no sistema a partir de um array de 
 // Jsons.
-adicionarPagamentosPorLista = async function(lista) {
+adicionarGastosPorLista = async function(lista) {
     try {
         const saida = [];
         for (indice in lista) {
-            if (await verificaExistenciaPagamento(lista[indice].cpfSocio, lista[indice].dataReferente)) {
-                saida[indice] = lista[indice].cpfSocio + ' | ' + lista[indice].dataReferente + ': Pagamento já cadastrado.';
-            } else {
-                const pagAdd = await Pagamento.create(lista[indice]);
-                saida[indice] = pagAdd;
-            }
+            const gasAdd = await Gasto.create(lista[indice]);
+            saida[indice] = gasAdd;
         }
         return saida;
     } catch (err) {
@@ -34,49 +26,30 @@ adicionarPagamentosPorLista = async function(lista) {
     }
 }
 
-// Listando todos os pagamentos.
-listarTodosPagamentos = async function() {
+// Listando todos os gastos.
+listarTodosGastos = async function() {
     try {
-        const pagamentos = await Pagamento.find();
-        return pagamentos;
+        const gastos = await Gasto.find();
+        return gastos;
     } catch (err) {
         return err;
     }    
 }
 
-// Listando todos os pagamentos de um sócio, por seu cpf.
-listarPagamentosCpf = async function(cpf) {
+// Apagando gasto do sistema.
+apagaGastoPorId = async function(id) {
     try {
-        const pagamentos = await Pagamento.find({cpfSocio: cpf});
-        return pagamentos;
-    } catch (err) {
-        return err;
-    }    
-}
-
-// Apagando pagamento do sistema.
-apagaPagamentoPorId = async function(id) {
-    try {
-        //if (!(await verificaExistenciaPagamentoPorId(_id))) {
-          //  throw 'Esse pagamento não está cadastrado no sistema.';
-        //}
-        await Pagamento.findOneAndDelete({ id });
-        return 'Pagamento apagado!';
+        await Gasto.findOneAndDelete({ id });
+        return 'Gasto apagado!';
     } catch (err) {
         return err;
     }
 }
 
-// Verifica se já existe o pagamento do sócio no mês referido.
-verificaExistenciaPagamento = async function(cpfSocio, dataReferente) {
-    const pag = await Pagamento.findOne({ cpfSocio, dataReferente });
-    return (pag != null);
-}
-
 // Verifica se já existe o pagamento por seu id.
-verificaExistenciaPagamentoPorId = async function(_id) {
-    const pag = await Pagamento.findOne({ _id });
-    return (pag != null);
+verificaExistenciaGastoPorId = async function(_id) {
+    const gasto = await Gasto.findOne({ _id });
+    return (gasto != null);
 }
 
-module.exports = { adicionarPagamento, listarTodosPagamentos, listarPagamentosCpf, adicionarPagamentosPorLista, apagaPagamentoPorId };
+module.exports = { adicionarGasto, listarTodosGastos, adicionarGastosPorLista, apagaGastoPorId };
