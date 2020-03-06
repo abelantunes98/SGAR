@@ -1,24 +1,24 @@
-const Gasto = require('../models/Gasto');
+const Reuniao = require('../models/Reuniao');
 
-// Adicionando um gasto da associação.
-adicionarGasto = async function(reqBody) {
+// Adicionando uma reunião da associação.
+adicionarReuniao = async function(reqBody) {
     
     try {
-        const gasto = await Gasto.create(reqBody);
-        return gasto;
+        const reuniao = await Reuniao.create(reqBody);
+        return reuniao;
     } catch (err) {
         return err;
     }
 }
 
-// Adicionando multiplos gastos no sistema a partir de um array de 
+// Adicionando multiplas reuniões no sistema a partir de um array de 
 // Jsons.
-adicionarGastosPorLista = async function(lista) {
+adicionarReunioesPorLista = async function(lista) {
     try {
         const saida = [];
         for (indice in lista) {
-            const gasAdd = await Gasto.create(lista[indice]);
-            saida[indice] = gasAdd;
+            const reuAdd = await Reuniao.create(lista[indice]);
+            saida[indice] = reuAdd;
         }
         return saida;
     } catch (err) {
@@ -26,54 +26,54 @@ adicionarGastosPorLista = async function(lista) {
     }
 }
 
-// Listando todos os gastos.
-listarTodosGastos = async function() {
+// Listando todas as reuniões.
+listarTodasReunioes = async function() {
     try {
-        const gastos = await Gasto.find();
-        return gastos;
+        const reunioes = await Reuniao.find();
+        return reunioes;
     } catch (err) {
         return err;
     }    
 }
 
-// Listando todos os gastos de um responsável, por seu cpf.
-listarGastosCpf = async function(cpf) {
+// Listando todas as reuniões de um responsável, por seu email.
+listarReunioesEmail = async function(email) {
     try {
-        const gastos = await Gasto.find({responsavelCpf: cpf});
-        return gastos;
+        const reunioes = await Reuniao.find({emailAdm: email});
+        return reunioes;
     } catch (err) {
         return err;
     }    
 }
 
-// Listando gastos de um determinado intervalo de tempo.
-// Referente a data do gasto.
-listarGastosIntervalo = async function(datInicial, datFinal) {
-    const gastos = await Gasto.find({ dataGasto: {$gt: datInicial, $lt: datFinal}});
-    return gastos;
+// Listando reunioes de um determinado intervalo de tempo.
+// Referente a data da reunião.
+listarReunioesIntervalo = async function(datInicial, datFinal) {
+    const reunioes = await Reuniao.find({ dataRealizada: {$gt: datInicial, $lt: datFinal}});
+    return reunioes;
 }
 
-// Listando gastos de um determinado intervalo de tempo.
+// Listando reuniões de um determinado intervalo de tempo.
 // Referente a data de inserção.
-listarGastosIntervaloInsercao = async function(datInicial, datFinal) {
-    const gastos = await Gasto.find({ createdAt: {$gte: datInicial, $lte: datFinal}});
-    return gastos;
+listarReunioesIntervaloInsercao = async function(datInicial, datFinal) {
+    const reunioes = await Reuniao.find({ createdAt: {$gte: datInicial, $lte: datFinal}});
+    return reunioes;
 }
 
-// Apagando gasto do sistema.
-apagaGastoPorId = async function(id) {
+// Apagando reunião do sistema.
+apagaReuniaoPorId = async function(id) {
     try {
-        const resp = await Gasto.findOneAndDelete({_id:id});
+        const resp = await Reuniao.findOneAndDelete({_id:id});
         return resp;
     } catch (err) {
         return err;
     }
 }
 
-// Verifica se já existe o pagamento por seu id.
-verificaExistenciaGastoPorId = async function(_id) {
-    const gasto = await Gasto.findOne({ _id });
-    return (gasto != null);
+// Verifica se já existe a reunião por seu id.
+verificaExistenciaReuniaoPorId = async function(_id) {
+    const reuniao = await Reuniao.findOne({ _id });
+    return (reuniao != null);
 }
 
-module.exports = { adicionarGasto, listarTodosGastos, listarGastosCpf, listarGastosIntervalo, listarGastosIntervaloInsercao, adicionarGastosPorLista, apagaGastoPorId };
+module.exports = { adicionarReuniao, listarTodasReunioes, listarReunioesEmail, listarReunioesIntervalo, listarReunioesIntervaloInsercao, adicionarReunioesPorLista, apagaReuniaoPorId };
