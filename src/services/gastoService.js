@@ -63,6 +63,9 @@ listarGastosIntervaloInsercao = async function(datInicial, datFinal) {
 // Apagando gasto do sistema.
 apagaGastoPorId = async function(id) {
     try {
+        if (!verificaExistenciaGastoPorId(id)) {
+            throw 'Gasto não encontrado!';
+        }
         const resp = await Gasto.findOneAndDelete({_id:id});
         return resp;
     } catch (err) {

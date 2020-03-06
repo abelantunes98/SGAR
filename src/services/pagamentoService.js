@@ -72,6 +72,9 @@ listarPagamentosIntervaloInsercao = async function(datInicial, datFinal) {
 // Apagando pagamento do sistema.
 apagaPagamentoPorId = async function(id) {
     try {
+        if (!verificaExistenciaPagamentoPorId(id)) {
+            throw 'Pagamento não encontrado!';
+        }
         const resp = await Pagamento.findOneAndDelete({ _id:id });
         return resp;
     } catch (err) {

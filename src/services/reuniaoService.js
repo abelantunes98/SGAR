@@ -63,6 +63,9 @@ listarReunioesIntervaloInsercao = async function(datInicial, datFinal) {
 // Apagando reunião do sistema.
 apagaReuniaoPorId = async function(id) {
     try {
+        if (!verificaExistenciaReuniaoPorId(id)) {
+            throw 'Reunião não encontrada!';
+        }
         const resp = await Reuniao.findOneAndDelete({_id:id});
         return resp;
     } catch (err) {
