@@ -27,46 +27,46 @@ router.get('/listar', async (req, res) => {
     }
 });
 
-// Listando gastos de um responsável, por seu cpf.
+// Listando reunioes de um responsável, por seu cpf.
 router.get('/listarporcpf', async (req, res) => {
     try {
         const { cpf } = req.body;
-        const resp = await gastoService.listarGastosCpf(cpf);
+        const resp = await reuniaoService.listarReunioesCpf(cpf);
         return res.send({ resp });
     } catch (err) {
         return res.status(400).send({ err });
     }
 });
 
-// Listando gastos a partir de um intervalo de datas.
-// Intervalo referente ao gasto.
-router.get('/listarpordatagasto', async (req, res) => {
+// Listando reuniões a partir de um intervalo de datas.
+// Intervalo referente a reunião.
+router.get('/listarpordatareuniao', async (req, res) => {
     try {
         const {datInicial, datFinal} = req.body;
-        const resp = await gastoService.listarGastosIntervalo(datInicial, datFinal);
+        const resp = await reuniaoService.listarReunioesIntervalo(datInicial, datFinal);
         return res.send({ resp });
     } catch (err) {
         return res.status(400).send({ err });
     }
 });
 
-// Listando gastos a partir de um intervalo de datas.
-// Intervalo referente a inserção do gasto.
+// Listando reuniões a partir de um intervalo de datas.
+// Intervalo referente a inserção da reunião.
 router.get('/listarpordatainsercao', async (req, res) => {
     try {
         const {datInicial, datFinal} = req.body;
-        const resp = await gastoService.listarGastosIntervaloInsercao(datInicial, datFinal);
+        const resp = await reuniaoService.listarReunioesIntervaloInsercao(datInicial, datFinal);
         return res.send({ resp });
     } catch (err) {
         return res.status(400).send({ err });
     }
 });
 
-// Criando gastos a partir de uma lista.
-router.post('/adicionargastoslista', async (req, res) => {
+// Criando reuniões a partir de uma lista.
+router.post('/adicionarreunioeslista', async (req, res) => {
     try {    
         const lista = req.body;
-        const resp = await gastoService.adicionarGastosPorLista(lista);
+        const resp = await reuniaoService.adicionarReunioesPorLista(lista);
         return res.send({ resp });
     } catch (err) {
         return res.status(400).send({ err });
@@ -74,11 +74,11 @@ router.post('/adicionargastoslista', async (req, res) => {
 
 });
 
-// Apagando um gasto por seu id.
+// Apagando uma reunião por seu id.
 router.delete('/apagarporid', async (req, res) => {
     try {
         const { id } = req.body;
-        const resp = await gastoService.apagaGastoPorId(id);
+        const resp = await reuniaoService.apagaReuniaoPorId(id);
         return res.send({ resp });
     } catch (err) {
         return res.status(400).send({ err });
@@ -87,4 +87,4 @@ router.delete('/apagarporid', async (req, res) => {
 
 
 
-module.exports = app => app.use('/gasto', router);
+module.exports = app => app.use('/reuniao', router);
