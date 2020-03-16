@@ -35,13 +35,20 @@ router.post('/register', authMiddle, async(req, res) => {
 
 // Rota de login.
 router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
     
-    if (await userService.verificaExistenciaUser(email)) {
-        resp = await userService.login(email, password);
-        return res.send({ resp });
-    } else {
-        return res.status(406).send({ error: 'Usuário não encontrado!' });
+    try{
+        const {email, password} = req.body; 
+        if (await userService.verificaExistenciaUser(email)) {
+            resp = await userService.login(email, password);
+            if (resp == 'Senha incorreta!') {
+                return res.status(406).send({ resp });    
+            }
+            return res.send({ resp });
+        } else {
+            return res.status(406).send({ error: 'Usuário não encontrado!' });
+        }
+    } catch(err) {
+        return res.status(500).send({ error: 'Erro na requisição.' });
     }
 });
 
