@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
         resp = await userService.login(email, password);
         return res.send({ resp });
     } else {
-        return res.status(400).send({ error: 'Usuário não encontrado!' });
+        return res.status(406).send({ error: 'Usuário não encontrado!' });
     }
 });
 
